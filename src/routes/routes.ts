@@ -1,6 +1,11 @@
 import {Request, Response} from "express";
 
+import { TaskController } from "../controllers/task-controller";
+
 export class Routes {       
+        
+    public taskController: TaskController = new TaskController();
+
     public routes(app): void {          
         app.route('/')
         .get((req: Request, res: Response) => {            
@@ -11,42 +16,17 @@ export class Routes {
         // task
         app.route('/task') 
         // Endpoint para método GET 
-        .get((req: Request, res: Response) => {
-        // Obtener todas las tareas            
-            res.status(200).send({
-                message: 'Acceso a obtener todas las tareas'
-            })
-        })        
+        .get(this.taskController.getTasks)        
         // Endpoint para método POST
-        .post((req: Request, res: Response) => {   
-        // Crear nueva tarea         
-            res.status(200).send({
-                message: 'Acceso a crear una tarea nueva'
-            })
-        })
+        .post(this.taskController.addNewTask)
         
         // Rutas para tratar tareas existentes de forma individual
         app.route('/task/:taskId')
         // Endpoint del método GET para obtener una sola tarea
-        .get((req: Request, res: Response) => {
-        // Obtener una tarea            
-            res.status(200).send({
-                message: 'Acceso a obtener una tarea'
-            })
-        })
+        .get(this.taskController.getTaskWithID)
         // Endpoint del método PUT
-        .put((req: Request, res: Response) => {
-        // Modificar una tarea           
-            res.status(200).send({
-                message: 'Acceso a modificar una tarea'
-            })
-        })
+        .put(this.taskController.updateTask)
         // Endpoint del método DELETE
-        .delete((req: Request, res: Response) => {       
-        // Borrar una tarea
-            res.status(200).send({
-                message: 'Acceso a borrar una tarea'
-            })
-        })
+        .delete(this.taskController.deleteTask)
     }
 }
