@@ -6,8 +6,8 @@
 FROM node
 
 # Información de Metadata
-LABEL "com.logalty.appNode"="LOGALTY"
-LABEL maintainer="david.crespi@logalty.com"
+LABEL "com.logalty.appNode"="dcrespim"
+LABEL maintainer="dcrespim@gmail.com"
 LABEL version="1.0"
 
 
