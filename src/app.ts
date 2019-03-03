@@ -8,7 +8,7 @@ class App {
     public app: express.Application;
     public routePrv: Routes = new Routes();
 
-    public mongoUrl: string = 'mongodb://localhost/TODOdb';  
+    public mongoUrl: string = 'mongodb://todo:pwdTodo@db:27017/TODOdb';  
     
     constructor() {
         this.app = express();
